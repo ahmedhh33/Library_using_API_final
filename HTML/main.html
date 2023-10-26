@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dogs</title>
+    <link rel="stylesheet" href="C:\Users\TRA\Desktop\atyap\libraryweb\CSS\home.css">
+    <script src="C:\Users\TRA\Desktop\atyap\libraryweb\JS\main.js" defer></script>
+</head>
+<body>
+    <header>
+        <a href="#"><h1>Books</h1></a>
+        <form id="form" onsubmit="searchBooks(event)">
+            <select id="search-option">
+                <option value="GetBookByTitle">Search by Title</option>
+                <option value="GetBookByAuthor">Search by Author</option>
+                <option value="GetBookByPublicationYear">Search by Publication Year</option>
+                <option value="GetBookCountByYear">Count Books by Year</option>
+                <option value="GetAllBook">Get All Books</option>
+                <option value="GetAvailableBook">Get Available Books</option>
+            </select>
+            <input type="text" id="search-input" placeholder="Search" class="search"/>
+            <button class="search-button">Search</button>
+        </form>
+        <a id="login-button" href="home.html" ><h1> Logout</h1></a>
+    </header>
+    <main id="main"></main>
+    <table id="book-table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Publication Year</th>
+            <th>Availability</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody id="book-table-body">
+        </tbody>
+      </table>
+</body>
+</html>

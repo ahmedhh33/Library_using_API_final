@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library Home Page</title>
+    <link rel="stylesheet" type="text/css" href="C:\Users\TRA\Desktop\atyap\libraryweb\CSS\login.css">
+</head>
+
+<body>
+    
+    
+    <div>
+        <h2>Welcome to ALNNOOR Library</h2>
+        <div id="login-section">
+            <h3>Login</h3>
+            <form id="login-form" onsubmit="handleLoginForm(event)">
+                <label for="login-email">Email:</label><br />
+                <input type="email" id="login-email" name="email" /><br /><br />
+                <label for="login-password">Password:</label><br />
+                <input type="password" id="login-password" name="password" /><br /><br />
+                <input type="submit" value="Login" />
+            </form>
+            <p>
+                Don't have an account?
+                <a href="#" onclick="showRegistration()">Register here</a>
+            </p>
+        </div>
+
+        <div id="registration-section" style="display: none">
+            <h3>Register</h3>
+            <form id="registration-form" onsubmit="handleRegistrationForm(event)">
+                <label for="username">Username:</label><br />
+                <input type="text" id="username" name="username" /><br /><br />
+                <label for="email">Email:</label><br />
+                <input type="email" id="email" name="email" /><br /><br />
+                <label for="password">Password:</label><br />
+                <input type="password" id="password" name="password" /><br /><br />
+                <label for="age">age:</label><br />
+                <input type="age" id="age" name="age" /><br /><br />
+                <input type="submit" value="Register" />
+            </form>
+        </div>
+    </div>
+
+    <script src="C:\Users\TRA\Desktop\atyap\libraryweb\JS\login.js"></script>
+</body>
+
+</html>
