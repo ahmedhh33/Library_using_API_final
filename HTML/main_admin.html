@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dogs</title>
+    <title>admin</title>
     <link rel="stylesheet" href="C:\Users\TRA\Desktop\atyap\libraryweb\CSS\home.css">
-    <script src="C:\Users\TRA\Desktop\atyap\libraryweb\JS\test2.js" defer></script>
+    <script src="C:\Users\TRA\Desktop\atyap\libraryweb\JS\main_admin.js" defer></script>
 </head>
 <body>
     <header>
@@ -22,6 +22,24 @@
             <input type="text" id="search-input" placeholder="Search" class="search"/>
             <button class="search-button">Search</button>
         </form>
+        <a herf="#"><h1>Library Management</h1></a>
+        
+          <select id="select-option" onchange="openNewWindow()">
+              <option value="AddBook.html">Add Book</option>
+              <option value="GetBookByPublicationYear">Update Book</option>
+              <option value="AddBook.html">Return Book</option>
+              <option value="GetTransactionHistoryForPatron">GetTransactionHistoryForPatron</option>
+              <option value="GetTransactionHistoryForBook">GetTransactionHistoryForBook</option>
+              <option value="AllTransaction">AllTransaction</option>
+              <option value="GetByBorrowDate">GetByBorrowDate</option>
+              <option value="GetByReturnDate">GetByReturnDate</option>
+              <option value="GetBorrowCount">GetBorrowCount</option>
+              <option value="GetPatronByName">GetPatronByName</option>
+              <option value="GetPatronByEmail">GetPatronByEmail</option>
+              <option value="GetAllPatrons">GetAllPatrons</option>
+              <option value="GetAllPatronsWithAgePeriod">GetAllPatronsWithAgePeriod</option>
+          </select>
+      
         <a id="login-button" href="home.html" ><h1> Logout</h1></a>
     </header>
     <main id="main"></main>

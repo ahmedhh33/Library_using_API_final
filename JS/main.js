@@ -49,11 +49,11 @@ const createRow = (book) => {
   addCell(row, book.is_Available ? "True" : "False");
 
   const actionCell = document.createElement("td");
-  const removeButton = document.createElement("button");
-  removeButton.classList.add("remove-button");
-  removeButton.textContent = "Borrow";
-  removeButton.addEventListener("click", () => borrowBook(book.b_ID));
-  actionCell.appendChild(removeButton);
+  const BorroweButton = document.createElement("button");
+  BorroweButton.classList.add("remove-button");
+  BorroweButton.textContent = "Borrow";
+  BorroweButton.addEventListener("click", () => borrowBook(book.b_ID));
+  actionCell.appendChild(BorroweButton);
   row.appendChild(actionCell);
 
   return row;

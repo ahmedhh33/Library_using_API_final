@@ -1,0 +1,119 @@
+<html>
+  <head>
+    <title>add books</title>
+
+    <style>
+      /* Style for the form */
+      .form-container {
+        width: 400px;
+        margin: auto;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        background-color: #f9f9f9;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      /* Style for the labels and input fields */
+      .form-container label,
+      .form-container input {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+        font-size: 16px;
+      }
+
+      .form-container input {
+        border: 1px solid #ccc;
+        border-radius: 4px;
+      }
+
+      /* Style for color picker */
+      #isAvailable {
+        width: auto;
+      }
+
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 20px;
+        background-image: url("C:/Users/TRA/Desktop/atyap/libraryweb/IMAGES/addlib.jpg");
+      }
+      h2 {
+    font-size: 20px;
+    font-family: sans-serif;
+    font-weight: bold;
+    text-align: center;
+    color: #140202;
+}
+    </style>
+  </head>
+
+  <body>
+    <h2>Adding books to  Library</h2>
+    <div class="form-container">
+      <form id="addBookForm">
+        <label for="bookTitle">Enter Book Title: </label>
+        <input id="bookTitle" type="text" />
+
+        <label for="bookAuthor">Enter Name of Author: </label>
+        <input id="bookAuthor" type="text" />
+
+        <label for="bookPubYear">Enter Year of Publication: </label>
+        <input id="bookPubYear" type="text" />
+
+        <input type="submit" value="Add Book" />
+      </form>
+    </div>
+  </body>
+
+  <script>
+    //listofbookelement = document.getElementById("orderedlistofbooks");
+    const apiGetallbookURL =
+      "https://Localhost:7211/api/BookManagement/GetAllBook";
+    fetch(apiGetallbookURL)
+      .then((resbosObj) => {
+        return resbosObj.json();
+      })
+      .then((parsedResponse) => {
+        parsedResponse.forEach((currentObjct) => {
+          console.log(currentObjct.title);
+
+          //const currentlistitem = document.createElement("li");
+          //currentlistitem.innerText = currentObjct.title;
+          //listofbookelement.appendChild(currentlistitem);
+        });
+      });
+
+    const createPostBookform = document.getElementById("addBookForm");
+    createPostBookform.addEventListener("submit", (event) => {
+      event.preventDefault();
+
+      const bookTitle = document.getElementById("bookTitle").value;
+      const bookAuthor = document.getElementById("bookAuthor").value;
+      const bookPubYear = document.getElementById("bookPubYear").value;
+
+      var requestOptions = {
+        method: "POST",
+      };
+
+      const apiPOSTURL = `https://localhost:7211/api/BookManagement?title=${bookTitle}&author=${bookAuthor}&publication_year=${bookPubYear}`;
+      fetch(apiPOSTURL, requestOptions)
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+          } else {
+            // Book added successfully
+            alert("Book added successfully!");
+            // Refresh the page
+            window.location.reload();
+          }
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+          // Handle the error case here
+        });
+    });
+  </script>
+</html>
