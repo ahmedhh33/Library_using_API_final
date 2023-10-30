@@ -1,0 +1,154 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>returb book</title>
+
+    <style>
+      /* Style for the form */
+      .form-container {
+        width: 400px;
+        margin: auto;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        background-color: rgba(31, 128, 145, 0.753);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      /* Style for the labels and input fields */
+      .form-container label,
+      .form-container input {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+        font-size: 16px;
+      }
+
+      .form-container input {
+        border: 1px solid #ccc;
+        border-radius: 4px;
+      }
+
+      /* Style for color picker */
+      #isAvailable {
+        width: auto;
+      }
+
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 20px;
+        background-image: url("C:/Users/TRA/Desktop/atyap/libraryweb/IMAGES/addlib.jpg");
+      }
+      h2 {
+        font-size: 20px;
+        font-family: sans-serif;
+        font-weight: bold;
+        text-align: center;
+        color: #140202;
+      }
+
+      .output-form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .transaction {
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        padding: 10px;
+        margin: 10px;
+      }
+
+      .field {
+        margin: 5px 0;
+      }
+
+      .transaction {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px;
+    background-color: rgba(31, 128, 145, 0.753);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .field {
+    margin: 5px 0;
+    color: #333;
+    font-family: 'Arial', sans-serif;
+    font-size: 18px;
+  }
+
+    </style>
+  </head>
+
+  <body>
+    <h2>Patron ID</h2>
+    <div class="form-container">
+      <form id="PatronForm">
+        <label for="PatronID">Enter Patron ID: </label>
+        <input id="PatronID" type="number" />
+
+        <input type="submit" value="Show History" />
+      </form>
+
+      
+    </div>
+
+    <h2>Patron History</h2>
+       <div id="output-form" class="output-form">
+       </div>
+       
+  <script>
+    const createPatronIDform = document.getElementById("PatronForm");
+  createPatronIDform.addEventListener("submit", (event) => {
+    event.preventDefault();
+
+    const PatronID = document.getElementById("PatronID").value;
+
+    const requestOptions = {
+      method: "GET",
+      redirect: "follow",
+    };
+
+    fetch(
+      `https://localhost:7211/api/BorrowingTransactions/GetTransactionHistoryForPatron?patronId=${PatronID}`,
+      requestOptions
+    )
+      .then((response) => response.json())
+      .then((result) => {
+        console.log(result); // Log the data to see its structure and type
+        const valuesArray = result["$values"];
+        if (Array.isArray(valuesArray)) {
+          displayOutput(valuesArray);
+        } else {
+          console.error("The response data is not in the expected format.");
+        }
+      })
+      .catch((error) => console.log("error", error));
+
+    function displayOutput(data) {
+      const outputForm = document.getElementById("output-form");
+      data.forEach((transaction) => {
+        const transactionDiv = document.createElement("div");
+        transactionDiv.classList.add("transaction");
+        for (const [key, value] of Object.entries(transaction)) {
+          if (key !== "$id" && key !== "$values") {
+            const fieldDiv = document.createElement("div");
+            fieldDiv.classList.add("field");
+            fieldDiv.textContent = `${key}: ${value}`;
+            transactionDiv.appendChild(fieldDiv);
+          }
+        }
+        outputForm.appendChild(transactionDiv);
+      });
+    }
+  });
+  </script>
+</html>
